@@ -25,9 +25,11 @@ export default function TextForm(props) {
         props.showAlert("Text is Reversed","success")
     }
     const handleCopy = () => {
-        
-        navigator.clipboard.writeText(text);
-        props.showAlert("Text Copied!","success")
+        var text = document.getElementById("myBox");
+        text.select() ;
+        navigator.clipboard.writeText(text.value);
+        document.getSelection().removeAllRanges();
+        props.showAlert("Copied to Clipboard!","success")
     }
 
     const handleOnChange = (event) => {
@@ -48,12 +50,12 @@ export default function TextForm(props) {
         <div className=" container mb-3">
             <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8" style={{backgroundColor : props.mode ==='dark'?'#343a40':'white',color : props.mode ==='dark'?'white':'black'}}></textarea>
         </div>
-        <button className="btn btn-primary mx-1 my-1"  onClick={handleUpClick}>Convert to Uppercase</button>
-        <button className="btn btn-primary mx-1 my-1" onClick={handleLoClick}>Convert to Lowercase</button>
-        <button className="btn btn-primary mx-1 my-1" onClick={handleClearClick}>Clear Text</button>
-        <button className="btn btn-primary mx-1 my-1" onClick={handleReverseClick}>Reverse Text</button>
-        <button className="btn btn-primary mx-1 my-1" onClick={handleCopy}>Copy Text</button>
-        <button className="btn btn-primary mx-1 my-1" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+        <button className="btn btn-primary mx-1 my-1" disabled={text.length===0} onClick={handleUpClick}>Convert to Uppercase</button>
+        <button className="btn btn-primary mx-1 my-1" disabled={text.length===0} onClick={handleLoClick}>Convert to Lowercase</button>
+        <button className="btn btn-primary mx-1 my-1" disabled={text.length===0} onClick={handleClearClick}>Clear Text</button>
+        <button className="btn btn-primary mx-1 my-1" disabled={text.length===0} onClick={handleReverseClick}>Reverse Text</button>
+        <button className="btn btn-primary mx-1 my-1" disabled={text.length===0} onClick={handleCopy}>Copy Text</button>
+        <button className="btn btn-primary mx-1 my-1" disabled={text.length===0} onClick={handleExtraSpaces}>Remove Extra Spaces</button>
     </div>
     <div className="container my-3"  style={{color : props.mode ==='dark'?'white':'black'}} id="myBox" rows="8">
         <h2>Your text summary</h2>

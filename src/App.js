@@ -24,30 +24,19 @@ function App() {
       setAlert(null);
     }, 1500);
   }
-  
-  const removeBodyClasses = ()=>{
-    document.body.classList.remove('bg-light')
-    document.body.classList.remove('bg-dark')
-    document.body.classList.remove('bg-warning')
-    document.body.classList.remove('bg-danger')
-    document.body.classList.remove('bg-success')
-  }
 
-  const toggleMode =(cls) =>{
-    removeBodyClasses();
-    document.body.classList.add('bg-'+cls)
-
+  const toggleMode =() =>{
     if(mode === 'light'){
       setMode('dark');
       document.body.style.backgroundColor='grey';
       showAlert("Dark mode has been enabled","success");
-     
-      // setInterval(() => {
-      //   document.title="TextUtils is Amazing"
-      // }, 2000);
-      // setInterval(() => {
-      //   document.title="Install TextUtils Now"
-      // }, 1500);
+      document.title="TextUtils-Dark Mode"
+      setInterval(() => {
+        document.title="TextUtils is Amazing"
+      }, 2000);
+      setInterval(() => {
+        document.title="Install TextUtils Now"
+      }, 1500);
     }
     else{
       setMode('light');
